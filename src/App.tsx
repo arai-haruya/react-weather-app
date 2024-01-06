@@ -13,6 +13,7 @@ type ResultsStateType = {
 }
 
 function App() {
+    const APIKEY = process.env.React_APP_WEATHER_API_KEY;
     const [city, setCity] = useState<string>("");
     const [results, setResults] = useState<ResultsStateType>({ 
         country: "",
@@ -23,7 +24,7 @@ function App() {
     });
     const getWeather = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        fetch(`https://api.weatherapi.com/v1/current.json?key=f6849bec6e9f47edad323553230310&q=${city}&aqi=no`)
+        fetch(`https://api.weatherapi.com/v1/current.json?key=${APIKEY}&q=${city}&aqi=no`)
             .then(res => res.json())
             .then(data => {
                 setResults({
